@@ -1,17 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthModule } from './auth/auth.module';
-import { ComponentComponent } from './component/component.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
-    ComponentComponent
+    ForbiddenComponent
   ],
   imports: [
     CommonModule,
-    AuthModule
+    AuthModule,
+    RouterModule.forChild([
+      {
+        path: "auth",
+        loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+      },
+      {
+        path: "forbidden",
+        component: ForbiddenComponent
+      }
+    ])
   ]
 })
 export class PublicModule { }
