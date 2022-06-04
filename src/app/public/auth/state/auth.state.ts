@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { LoginAction } from './auth.actions';
+import { GetCurrentUserAction, LoginAction } from './auth.actions';
 import { LoginControllerService, PersonControllerService } from 'src/api/services';
 import { tap } from 'rxjs/operators';
 import { PersonDto } from 'src/api/models';
+import { Navigate } from '@ngxs/router-plugin';
 
 export class AuthStateModel {
   public token: string;
@@ -37,7 +38,23 @@ export class AuthState {
   }
 
   @Action(LoginAction)
-  login({ patchState }: StateContext<AuthStateModel>, { loginDto }: LoginAction) {
-    return this.loginControllerService.authenticateUser({body: loginDto}).pipe(tap(response => patchState({token: response.token})))
+  login({ patchState, dispatch }: StateContext<AuthStateModel>, { loginDto }: LoginAction) {
+    return this.loginControllerService.authenticateUser({body: loginDto}).pipe(
+      tap(response => {
+        patchState({
+          token: response.token
+        })
+        localStorage.setItem("token", response.token)
+        dispatch(new GetCurrentUserAction())
+        dispatch(new Navigate(["/"]))
+      })
+    )
+  }
+
+  @Action(GetCurrentUserAction)
+  getCurrentUser( { patchState }: StateContext<AuthStateModel> ) {
+    return this.personService.getCurrentUser().pipe(
+      tap(response => patchState({currentPerson: response}))
+    )
   }
 }
