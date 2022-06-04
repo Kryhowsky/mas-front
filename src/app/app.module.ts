@@ -15,13 +15,24 @@ import { PublicModule } from './public/public.module';
 import { PrivateModule } from './private/private.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
+import { ApiModule } from 'src/api/api.module';
+import { environment } from 'src/environments/environment';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { MatBadgeModule } from '@angular/material/badge';
+import { RouterModule } from '@angular/router';
+import { BorrowerComponent } from './public/borrower/borrower.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    BorrowerComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -34,7 +45,16 @@ import { NgxsModule } from '@ngxs/store';
     PublicModule,
     PrivateModule,
     HttpClientModule,
-    NgxsModule.forRoot()
+    NgxsModule.forRoot(),
+    ApiModule.forRoot({
+      rootUrl: environment.backendUrl
+    }),
+    MatBadgeModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    NgxsRouterPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

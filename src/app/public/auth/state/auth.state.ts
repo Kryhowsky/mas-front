@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { GetCurrentUserAction, LoginAction } from './auth.actions';
+import { GetCurrentUserAction, LoginAction, LoginFromLocalStorageAction } from './auth.actions';
 import { LoginControllerService, PersonControllerService } from 'src/api/services';
 import { tap } from 'rxjs/operators';
 import { PersonDto } from 'src/api/models';
@@ -56,5 +56,18 @@ export class AuthState {
     return this.personService.getCurrentUser().pipe(
       tap(response => patchState({currentPerson: response}))
     )
+  }
+
+  @Action(LoginFromLocalStorageAction)
+  loginFromLocalStorage( { patchState, dispatch }: StateContext<AuthStateModel> ) {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      patchState({
+        token
+      })
+      dispatch(new GetCurrentUserAction())
+    }
+
   }
 }

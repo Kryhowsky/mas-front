@@ -6,6 +6,11 @@ export class LoginAction {
 }
 
 export class GetCurrentUserAction {
-  static readonly type = '[Ayth] GetCurrentUserAction';
+  static readonly type = '[Auth] GetCurrentUserAction';
+  constructor() {}
+}
+
+export class LoginFromLocalStorageAction {
+  static readonly type = '[Auth] LoginFromLocalStorageAction';
   constructor() {}
 }
