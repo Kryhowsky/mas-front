@@ -1,0 +1,13 @@
+export { WorkerControllerService } from './services/worker-controller.service';
+export { PublishingHouseControllerService } from './services/publishing-house-controller.service';
+export { PaperBookControllerService } from './services/paper-book-controller.service';
+export { LaneControllerService } from './services/lane-controller.service';
+export { EbookControllerService } from './services/ebook-controller.service';
+export { BorrowerControllerService } from './services/borrower-controller.service';
+export { BookstandControllerService } from './services/bookstand-controller.service';
+export { AuthorControllerService } from './services/author-controller.service';
+export { AdministratorControllerService } from './services/administrator-controller.service';
+export { LoginControllerService } from './services/login-controller.service';
+export { PersonControllerService } from './services/person-controller.service';
+export { GenreControllerService } from './services/genre-controller.service';
+export { BookControllerService } from './services/book-controller.service';
