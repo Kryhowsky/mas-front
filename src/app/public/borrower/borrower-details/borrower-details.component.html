@@ -1,1 +1,18 @@
-<p>borrower-details works!</p>
+<mat-card class="example-card" *ngIf="borrower$ | async as borrower">
+    <mat-card-header>
+      <mat-card-title>{{borrower.libraryCardNumber}}</mat-card-title>
+      <mat-card-subtitle>{{borrower.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="{{product.imagePath}}"> -->
+    <mat-card-content>
+      <p>{{borrower.firstName}} {{borrower.lastName}}</p>
+      <p>Sex: {{borrower.sex}}</p>
+      <p>Address: {{borrower.address}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <!-- <form [formGroup]="formGroup" (ngSubmit)="submit()">
+            <formly-form [fields]="formConfig" [form]="formGroup"></formly-form>
+            <button mat-raised-button color="primary" [disabled]="!formGroup.valid">Dodaj do koszyka</button>
+        </form> -->
+    </mat-card-actions>
+  </mat-card>
