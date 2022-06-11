@@ -14,3 +14,8 @@ export class LoginFromLocalStorageAction {
   static readonly type = '[Auth] LoginFromLocalStorageAction';
   constructor() {}
 }
+
+export class LogoutAction {
+  static readonly type = '[User] LogoutAction';
+  constructor() {}
+}

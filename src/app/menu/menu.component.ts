@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
+import { LogoutAction } from '../public/auth/state/auth.actions';
 
 @Component({
   selector: 'app-menu',
@@ -21,5 +22,9 @@ export class MenuComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, private readonly store: Store) {}
+
+  logout() {
+    this.store.dispatch(new LogoutAction())
+  }
 
 }

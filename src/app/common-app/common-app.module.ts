@@ -5,12 +5,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
+import { BorrowingsTableComponent } from './borrowings-table/borrowings-table.component';
 
 
 
 @NgModule({
   declarations: [
-    BorrowersTableComponent
+    BorrowersTableComponent,
+    BorrowingsTableComponent
   ],
   imports: [
     CommonModule,
@@ -19,6 +21,6 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     RouterModule
   ],
-  exports:[BorrowersTableComponent]
+  exports:[BorrowersTableComponent, BorrowingsTableComponent]
 })
 export class CommonAppModule { }

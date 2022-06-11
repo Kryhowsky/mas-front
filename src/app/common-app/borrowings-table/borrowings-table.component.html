@@ -1,0 +1,42 @@
+<button mat-raised-button class="magic-button" *ngIf="!(token$ | async)" routerLink="/borrowings/overtime">Overtime borrowings</button>
+
+<div *ngIf="borrowingsPage$ | async as borrowingsPage" class="mat-elevation-z8">
+    <table mat-table [dataSource]="borrowingsPage.content">
+
+      <ng-container matColumnDef="dateOfBorrowing">
+        <th mat-header-cell *matHeaderCellDef> Date of borrowing </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateOfBorrowing}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfReturn">
+        <th mat-header-cell *matHeaderCellDef> Date of return </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateOfReturn}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bookTitle">
+        <th mat-header-cell *matHeaderCellDef> Book title </th>
+        <td mat-cell *matCellDef="let element"> {{element.bookTitle}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="bookDescription">
+        <th mat-header-cell *matHeaderCellDef> Book description </th>
+        <td mat-cell *matCellDef="let element"> {{element.bookDescription}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bookAuthor">
+        <th mat-header-cell *matHeaderCellDef> Book author </th>
+        <td mat-cell *matCellDef="let element"> {{element.bookAuthor}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                    [length]="borrowingsPage.totalElements"
+                    [pageSize]="borrowingsPage.size"
+                    (page)="changePage($event)"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>

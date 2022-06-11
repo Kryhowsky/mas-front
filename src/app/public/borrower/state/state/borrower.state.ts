@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Navigate } from '@ngxs/router-plugin';
 import { State, Action, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
-import { BorrowerDto, PageBorrowerDto } from 'src/api/models';
+import { BorrowerDto, BorrowingDto, PageBorrowerDto } from 'src/api/models';
 import { BorrowerControllerService } from 'src/api/services';
 import { ClearBorrowerAction, CreateBorrowerAction, DeleteBorrowerByIdAction, EditBorrowerAction, GetBorrowerByIdAction, GetBorrowersPageAction } from './borrower.actions';
 
@@ -10,12 +10,14 @@ export class BorrowerStateModel {
   public borrowerPage: PageBorrowerDto;
   public pageSize: number;
   public borrower: BorrowerDto;
+  public borrowings: BorrowingDto[]
 }
 
 const defaults = {
   borrowerPage: null,
   pageSize: 10,
-  borrower: null
+  borrower: null,
+  borrowings: null
 };
 
 @State<BorrowerStateModel>({
@@ -60,8 +62,16 @@ export class BorrowerState {
 
   @Action(GetBorrowerByIdAction)
   getProductById({ patchState }: StateContext<BorrowerStateModel>, { borrowerId }: GetBorrowerByIdAction) {
-    return this.borrowerService.getBorrowerById({id: borrowerId}).pipe(
-      tap(response => patchState({borrower: response}))
+    this.borrowerService.getBorrowerWithBorrowingsById({id: borrowerId}).pipe(
+      tap(response => patchState({borrowings: response.borrowings}))
+    )
+
+    // return this.borrowerService.getBorrowerById({id: borrowerId}).pipe(
+    //   tap(response => patchState({borrower: response}))
+    // )
+
+    return this.borrowerService.getBorrowerWithBorrowingsById({id: borrowerId}).pipe(
+      tap(response => patchState({borrower: response.borrower, borrowings:response.borrowings}))
     )
   }
 

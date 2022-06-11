@@ -7,7 +7,8 @@
     <mat-nav-list>
       <a mat-list-item *ngIf="!(token$ | async)" routerLink="/auth/login">Login</a>
       <a mat-list-item routerLink="/borrower/list">Borrowers</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item routerLink="/borrowings/list">Borrowings</a>
+      <a mat-list-item *ngIf="(token$ | async)" (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

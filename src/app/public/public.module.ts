@@ -4,6 +4,8 @@ import { AuthModule } from './auth/auth.module';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { RouterModule } from '@angular/router';
 import { BorrowerModule } from './borrower/borrower.module';
+import { BorrowingsModule } from './borrowings/borrowings.module';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -15,6 +17,8 @@ import { BorrowerModule } from './borrower/borrower.module';
     CommonModule,
     AuthModule,
     BorrowerModule,
+    BorrowingsModule,
+    MatTableModule,
     RouterModule,
     RouterModule.forChild([
       {
@@ -24,6 +28,10 @@ import { BorrowerModule } from './borrower/borrower.module';
       {
         path: "borrower",
         loadChildren: () => import("./borrower/borrower.module").then(m => m.BorrowerModule)
+      },
+      {
+        path: "borrowings",
+        loadChildren: () => import("./borrowings/borrowings.module").then(m => m.BorrowingsModule)
       },
       {
         path: "forbidden",

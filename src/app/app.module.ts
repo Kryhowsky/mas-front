@@ -24,6 +24,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule } from '@angular/router';
 import { BorrowerComponent } from './public/borrower/borrower.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { BorrowerComponent } from './public/borrower/borrower.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    MatTableModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

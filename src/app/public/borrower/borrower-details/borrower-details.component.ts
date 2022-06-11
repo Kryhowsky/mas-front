@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { BorrowerDto } from 'src/api/models';
+import { BorrowerDto, BorrowingDto } from 'src/api/models';
 import { ClearBorrowerAction, GetBorrowerByIdAction } from '../state/state/borrower.actions';
 
 @Component({
@@ -19,6 +19,9 @@ export class BorrowerDetailsComponent implements OnInit, OnDestroy {
   @Select(state => state.borrower.borrower)
   borrower$: Observable<BorrowerDto>
 
+  @Select(state => state.borrower.borrowings)
+  borrowings$: Observable<BorrowingDto[]>
+
   formGroup: FormGroup = new FormGroup({})
 
   constructor(private readonly store: Store, private readonly activatedRoute: ActivatedRoute) { }
@@ -30,6 +33,7 @@ export class BorrowerDetailsComponent implements OnInit, OnDestroy {
       if (this.borrowerId) {
         this.store.dispatch(new GetBorrowerByIdAction(this.borrowerId))
       }
+      // console.log(this.borrowings$)
     })
   }
 

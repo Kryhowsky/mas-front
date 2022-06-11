@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { BorrowerDto } from '../models/borrower-dto';
+import { BorrowerWithBorrowingsDto } from '../models/borrower-with-borrowings-dto';
 import { PageBorrowerDto } from '../models/page-borrower-dto';
 
 @Injectable({
@@ -276,6 +277,56 @@ export class BorrowerControllerService extends BaseService {
 
     return this.saveBorrower$Response(params).pipe(
       map((r: StrictHttpResponse<BorrowerDto>) => r.body as BorrowerDto)
+    );
+  }
+
+  /**
+   * Path part for operation getBorrowerWithBorrowingsById
+   */
+  static readonly GetBorrowerWithBorrowingsByIdPath = '/api/borrowers/{id}/borrowings';
+
+  /**
+   * Allows to get Borrower specified by ID with borrowings.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getBorrowerWithBorrowingsById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getBorrowerWithBorrowingsById$Response(params: {
+    id: number;
+  }): Observable<StrictHttpResponse<BorrowerWithBorrowingsDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, BorrowerControllerService.GetBorrowerWithBorrowingsByIdPath, 'get');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<BorrowerWithBorrowingsDto>;
+      })
+    );
+  }
+
+  /**
+   * Allows to get Borrower specified by ID with borrowings.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getBorrowerWithBorrowingsById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getBorrowerWithBorrowingsById(params: {
+    id: number;
+  }): Observable<BorrowerWithBorrowingsDto> {
+
+    return this.getBorrowerWithBorrowingsById$Response(params).pipe(
+      map((r: StrictHttpResponse<BorrowerWithBorrowingsDto>) => r.body as BorrowerWithBorrowingsDto)
     );
   }
 

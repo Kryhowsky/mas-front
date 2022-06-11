@@ -11,9 +11,7 @@ import { TokenInterceptor } from './token.interceptor';
   imports: [
     CommonModule
   ],
-  providers: [
-    AuthGuard,
-    {
+  providers: [AuthGuard, {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true

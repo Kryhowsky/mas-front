@@ -10,4 +10,5 @@ export { AdministratorControllerService } from './services/administrator-control
 export { LoginControllerService } from './services/login-controller.service';
 export { PersonControllerService } from './services/person-controller.service';
 export { GenreControllerService } from './services/genre-controller.service';
+export { BorrowingControllerService } from './services/borrowing-controller.service';
 export { BookControllerService } from './services/book-controller.service';

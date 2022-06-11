@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { GetCurrentUserAction, LoginAction, LoginFromLocalStorageAction } from './auth.actions';
+import { GetCurrentUserAction, LoginAction, LoginFromLocalStorageAction, LogoutAction } from './auth.actions';
 import { LoginControllerService, PersonControllerService } from 'src/api/services';
 import { tap } from 'rxjs/operators';
 import { PersonDto } from 'src/api/models';
@@ -63,11 +63,22 @@ export class AuthState {
     const token = localStorage.getItem("token");
 
     if (token) {
-      patchState({
-        token
-      })
-      dispatch(new GetCurrentUserAction())
+      // patchState({
+      //   token
+      // })
+      // dispatch(new GetCurrentUserAction())
+      dispatch(new LogoutAction())
     }
 
   }
+
+  @Action(LogoutAction)
+  logoutUser({ patchState }: StateContext<AuthStateModel>) {
+    patchState({
+      token: null,
+      currentPerson: null
+    })
+    localStorage.removeItem("token")
+  }
+
 }

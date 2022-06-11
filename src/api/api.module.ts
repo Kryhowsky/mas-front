@@ -16,6 +16,7 @@ import { AdministratorControllerService } from './services/administrator-control
 import { LoginControllerService } from './services/login-controller.service';
 import { PersonControllerService } from './services/person-controller.service';
 import { GenreControllerService } from './services/genre-controller.service';
+import { BorrowingControllerService } from './services/borrowing-controller.service';
 import { BookControllerService } from './services/book-controller.service';
 
 /**
@@ -38,6 +39,7 @@ import { BookControllerService } from './services/book-controller.service';
     LoginControllerService,
     PersonControllerService,
     GenreControllerService,
+    BorrowingControllerService,
     BookControllerService,
     ApiConfiguration
   ],
