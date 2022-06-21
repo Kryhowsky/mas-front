@@ -1,3 +1,4 @@
+export { ErrorDto } from './models/error-dto';
 export { WorkerDto } from './models/worker-dto';
 export { PublishingHouseDto } from './models/publishing-house-dto';
 export { PaperBookDto } from './models/paper-book-dto';
@@ -9,6 +10,7 @@ export { AuthorDto } from './models/author-dto';
 export { AdministratorDto } from './models/administrator-dto';
 export { LoginDto } from './models/login-dto';
 export { TokenDto } from './models/token-dto';
+export { NewBorrowingDto } from './models/new-borrowing-dto';
 export { PageWorkerDto } from './models/page-worker-dto';
 export { PageableObject } from './models/pageable-object';
 export { Sort } from './models/sort';

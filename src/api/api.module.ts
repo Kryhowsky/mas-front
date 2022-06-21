@@ -14,9 +14,10 @@ import { BookstandControllerService } from './services/bookstand-controller.serv
 import { AuthorControllerService } from './services/author-controller.service';
 import { AdministratorControllerService } from './services/administrator-controller.service';
 import { LoginControllerService } from './services/login-controller.service';
+import { BorrowingControllerService } from './services/borrowing-controller.service';
 import { PersonControllerService } from './services/person-controller.service';
 import { GenreControllerService } from './services/genre-controller.service';
-import { BorrowingControllerService } from './services/borrowing-controller.service';
+import { FileControllerService } from './services/file-controller.service';
 import { BookControllerService } from './services/book-controller.service';
 
 /**
@@ -37,9 +38,10 @@ import { BookControllerService } from './services/book-controller.service';
     AuthorControllerService,
     AdministratorControllerService,
     LoginControllerService,
+    BorrowingControllerService,
     PersonControllerService,
     GenreControllerService,
-    BorrowingControllerService,
+    FileControllerService,
     BookControllerService,
     ApiConfiguration
   ],

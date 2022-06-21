@@ -34,6 +34,10 @@ import { MatTableModule } from '@angular/material/table';
         loadChildren: () => import("./borrowings/borrowings.module").then(m => m.BorrowingsModule)
       },
       {
+        path: "books",
+        loadChildren: () => import("./books/books.module").then(m => m.BooksModule)
+      },
+      {
         path: "forbidden",
         component: ForbiddenComponent
       }

@@ -279,4 +279,54 @@ export class PaperBookControllerService extends BaseService {
     );
   }
 
+  /**
+   * Path part for operation getPaperBookQuantityByIban
+   */
+  static readonly GetPaperBookQuantityByIbanPath = '/api/paper-books/quantity/{iban}';
+
+  /**
+   * Returns Quantity of Paperbook by given IBAN.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getPaperBookQuantityByIban()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPaperBookQuantityByIban$Response(params: {
+    iban: string;
+  }): Observable<StrictHttpResponse<number>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PaperBookControllerService.GetPaperBookQuantityByIbanPath, 'get');
+    if (params) {
+      rb.path('iban', params.iban, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
+      })
+    );
+  }
+
+  /**
+   * Returns Quantity of Paperbook by given IBAN.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getPaperBookQuantityByIban$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  getPaperBookQuantityByIban(params: {
+    iban: string;
+  }): Observable<number> {
+
+    return this.getPaperBookQuantityByIban$Response(params).pipe(
+      map((r: StrictHttpResponse<number>) => r.body as number)
+    );
+  }
+
 }

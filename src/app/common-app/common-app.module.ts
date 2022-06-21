@@ -6,13 +6,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { BorrowingsTableComponent } from './borrowings-table/borrowings-table.component';
+import { BooksTableComponent } from './books-table/books-table.component';
 
 
 
 @NgModule({
   declarations: [
     BorrowersTableComponent,
-    BorrowingsTableComponent
+    BorrowingsTableComponent,
+    BooksTableComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,6 @@ import { BorrowingsTableComponent } from './borrowings-table/borrowings-table.co
     MatButtonModule,
     RouterModule
   ],
-  exports:[BorrowersTableComponent, BorrowingsTableComponent]
+  exports:[BorrowersTableComponent, BorrowingsTableComponent, BooksTableComponent]
 })
 export class CommonAppModule { }

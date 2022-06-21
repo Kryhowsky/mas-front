@@ -8,7 +8,8 @@ export { BookstandControllerService } from './services/bookstand-controller.serv
 export { AuthorControllerService } from './services/author-controller.service';
 export { AdministratorControllerService } from './services/administrator-controller.service';
 export { LoginControllerService } from './services/login-controller.service';
+export { BorrowingControllerService } from './services/borrowing-controller.service';
 export { PersonControllerService } from './services/person-controller.service';
 export { GenreControllerService } from './services/genre-controller.service';
-export { BorrowingControllerService } from './services/borrowing-controller.service';
+export { FileControllerService } from './services/file-controller.service';
 export { BookControllerService } from './services/book-controller.service';

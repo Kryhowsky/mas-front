@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
 import { LogoutAction } from '../public/auth/state/auth.actions';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,7 @@ import { LogoutAction } from '../public/auth/state/auth.actions';
 })
 export class MenuComponent {
 
-  @Select(state => state.user.token)
+  @Select(state => state.auth.token)
   token$: Observable<string>
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -25,6 +26,7 @@ export class MenuComponent {
 
   logout() {
     this.store.dispatch(new LogoutAction())
+    this.store.dispatch(new Navigate(["/auth/login"]))
   }
 
 }

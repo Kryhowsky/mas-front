@@ -13,6 +13,7 @@ import { BorrowingsListComponent } from './borrowings-list/borrowings-list.compo
 import { BorrowingsState } from './state/borrowings.state';
 import { BorrowingsOvertimeComponent } from './borrowings-overtime/borrowings-overtime.component';
 import { MatTableModule } from '@angular/material/table';
+import { LibrarycardFormComponent } from './librarycard-form/librarycard-form.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: "overtime",
         component: BorrowingsOvertimeComponent
+      },
+      {
+        path: "library-card",
+        component: LibrarycardFormComponent
       }
     ]
   }
@@ -35,7 +40,8 @@ const routes: Routes = [
   declarations: [
     BorrowingsComponent,
     BorrowingsListComponent,
-    BorrowingsOvertimeComponent
+    BorrowingsOvertimeComponent,
+    LibrarycardFormComponent
   ],
   imports: [
     CommonModule,

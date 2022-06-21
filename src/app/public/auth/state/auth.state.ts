@@ -63,11 +63,11 @@ export class AuthState {
     const token = localStorage.getItem("token");
 
     if (token) {
-      // patchState({
-      //   token
-      // })
-      // dispatch(new GetCurrentUserAction())
-      dispatch(new LogoutAction())
+      patchState({
+        token
+      })
+      dispatch(new GetCurrentUserAction())
+      // dispatch(new LogoutAction())
     }
 
   }

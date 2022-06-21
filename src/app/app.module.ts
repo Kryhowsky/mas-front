@@ -25,12 +25,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { RouterModule } from '@angular/router';
 import { BorrowerComponent } from './public/borrower/borrower.component';
 import { MatTableModule } from '@angular/material/table';
+import { BooksComponent } from './public/books/books.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    BorrowerComponent
+    BorrowerComponent,
+    BooksComponent
   ],
   imports: [
     RouterModule,
