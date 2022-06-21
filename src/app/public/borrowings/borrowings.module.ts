@@ -14,6 +14,7 @@ import { BorrowingsState } from './state/borrowings.state';
 import { BorrowingsOvertimeComponent } from './borrowings-overtime/borrowings-overtime.component';
 import { MatTableModule } from '@angular/material/table';
 import { LibrarycardFormComponent } from './librarycard-form/librarycard-form.component';
+import { AuthGuard } from 'src/app/private/auth.guard';
 
 const routes: Routes = [
   {
@@ -30,7 +31,11 @@ const routes: Routes = [
       },
       {
         path: "library-card",
-        component: LibrarycardFormComponent
+        component: LibrarycardFormComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ["ROLE_ADMIN", "ROLE_WORKER"]
+        }
       }
     ]
   }
