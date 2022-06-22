@@ -9,6 +9,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { AddBookstandDto } from '../models/add-bookstand-dto';
 import { LaneDto } from '../models/lane-dto';
 import { PageLaneDto } from '../models/page-lane-dto';
 
@@ -276,6 +277,56 @@ export class LaneControllerService extends BaseService {
 
     return this.saveLane$Response(params).pipe(
       map((r: StrictHttpResponse<LaneDto>) => r.body as LaneDto)
+    );
+  }
+
+  /**
+   * Path part for operation addBookstand
+   */
+  static readonly AddBookstandPath = '/api/lanes/add/boostand';
+
+  /**
+   * Allows to add bookstand to lane.
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `addBookstand()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  addBookstand$Response(params: {
+    body: AddBookstandDto
+  }): Observable<StrictHttpResponse<void>> {
+
+    const rb = new RequestBuilder(this.rootUrl, LaneControllerService.AddBookstandPath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: '*/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      })
+    );
+  }
+
+  /**
+   * Allows to add bookstand to lane.
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `addBookstand$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  addBookstand(params: {
+    body: AddBookstandDto
+  }): Observable<void> {
+
+    return this.addBookstand$Response(params).pipe(
+      map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
 

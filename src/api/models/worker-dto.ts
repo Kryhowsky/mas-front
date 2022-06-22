@@ -1,12 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface WorkerDto {
-  address: string;
+  address?: string;
   confirmPassword?: string;
   email: string;
-  firstName: string;
+  firstName?: string;
   id?: number;
-  lastName: string;
+  lastName?: string;
+  maidenName?: string;
+  militaryService?: boolean;
   password: string;
   position?: 'HELPER' | 'LIBRARIAN' | 'SENIOR_LIBRARIAN';
   roles?: Array<string>;

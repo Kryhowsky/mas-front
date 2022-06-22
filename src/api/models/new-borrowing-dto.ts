@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface NewBorrowingDto {
-  iban: string;
+  isbn: string;
   libraryCardNumber: string;
 }

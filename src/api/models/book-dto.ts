@@ -2,6 +2,6 @@
 /* eslint-disable */
 export interface BookDto {
   description?: string;
-  iban: string;
-  title: string;
+  isbn: string;
+  title?: string;
 }

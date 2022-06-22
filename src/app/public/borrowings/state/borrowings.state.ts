@@ -65,7 +65,7 @@ export class BorrowingsState {
   checkBookQuantity({dispatch, getState }: StateContext<BorrowingsStateModel>, { isbn }: CheckBookQuantityAction) {
     return this.paperBookService.getPaperBookQuantityByIban({iban: isbn}).pipe(
       tap(response => {
-        dispatch(new AddBorrowingAction({libraryCardNumber: getState().libraryCardNumber, iban: isbn}))
+        dispatch(new AddBorrowingAction({libraryCardNumber: getState().libraryCardNumber, isbn: isbn}))
       }), 
       catchError((err, caught) => {
         dispatch(new Navigate(["/borrowings/library-card"]))

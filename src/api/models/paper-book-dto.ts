@@ -3,7 +3,7 @@
 export interface PaperBookDto {
   coverType?: 'SOFT' | 'HARD';
   description?: string;
-  iban: string;
+  isbn: string;
   quantity?: number;
-  title: string;
+  title?: string;
 }

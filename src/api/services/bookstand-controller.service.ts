@@ -9,6 +9,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { AddBookstandDto } from '../models/add-bookstand-dto';
 import { BookstandDto } from '../models/bookstand-dto';
 import { PageBookstandDto } from '../models/page-bookstand-dto';
 
@@ -243,7 +244,7 @@ export class BookstandControllerService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   saveBookstand$Response(params: {
-    body: BookstandDto
+    body: AddBookstandDto
   }): Observable<StrictHttpResponse<BookstandDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, BookstandControllerService.SaveBookstandPath, 'post');
@@ -271,7 +272,7 @@ export class BookstandControllerService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   saveBookstand(params: {
-    body: BookstandDto
+    body: AddBookstandDto
   }): Observable<BookstandDto> {
 
     return this.saveBookstand$Response(params).pipe(
